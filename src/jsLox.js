@@ -90,4 +90,8 @@ class jsLox {
   }
 }
 
+/**
+ *  TODO: 
+ * - Move this elsewhere
+ */
 jsLox.init();

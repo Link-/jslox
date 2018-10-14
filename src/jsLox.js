@@ -1,6 +1,11 @@
 const fs = require('fs');
 const readline = require('readline');
+const Token = require('./Token.js');
 
+/**
+ * TODO:
+ * - Rename this class "Shell" and move jsLox to the root directory
+ */
 class jsLox {
 
   static init() {

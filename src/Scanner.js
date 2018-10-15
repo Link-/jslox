@@ -175,7 +175,7 @@ class Scanner {
 
     this.advance();
 
-    value = this.source.substr(this.start + 1, this.current - 1);
+    const value = this.source.substr(this.start + 1, this.current - 1);
     this.addToken(TokenType.STRING, value);
   }
 

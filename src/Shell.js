@@ -10,8 +10,8 @@ class Shell {
   static init() {
     // Error flag -- will terminate execution if error is raised
     Shell.hadError = false;
-    // process.argv is an array containing the command line arguments. 
-    // The first element will be 'node', the second element will be 
+    // process.argv is an array containing the command line arguments.
+    // The first element will be 'node', the second element will be
     // the name of the JavaScript file so we remove both with slice()
     const args = process.argv.slice(2);
 
@@ -25,9 +25,9 @@ class Shell {
   }
 
   /**
-   * TODO: 
+   * TODO:
    * - Refactor to handle more encodings
-   * @param {*} path 
+   * @param {*} path
    */
   static runFile(path) {
     console.log(`Running: ${path}`);
@@ -68,26 +68,26 @@ class Shell {
 
   /**
    * Execute source code
-   * @param {*} source 
+   * @param {*} source
    */
   static run(source) {
     console.log(`EXEC: ${source}`);
   }
 
   /**
-   * 
-   * @param {*} line 
-   * @param {*} message 
+   *
+   * @param {*} line
+   * @param {*} message
    */
   static error(line, message) {
     report(line, "", message);
   }
 
   /**
-   * 
-   * @param {*} line 
-   * @param {*} location 
-   * @param {*} message 
+   *
+   * @param {*} line
+   * @param {*} location
+   * @param {*} message
    */
   static report(line, location, message) {
     process.stderr.write(`[line ${line}] Error ${location} : ${message}`);

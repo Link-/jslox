@@ -2,8 +2,9 @@
   "name": "jslox",
   "version": "0.0.1",
   "description": "Javascript implementation of the Lox language",
-  "main": "./src/jslox.js",
+  "main": "jsLox",
   "scripts": {
+    "dev": "node jsLox",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

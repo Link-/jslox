@@ -1,2 +1,18 @@
-# jslox
-Javascript implementation of the Lox language (for educational purposes)
+# jsLox
+Javascript implementation of the Lox language (for educational purposes). Lox is a programming language defined in [https://craftinginterpreters.com](https://craftinginterpreters.com)
+
+# Usage
+
+Clone the repository then run the REPL.
+
+```
+$: npm run dev
+```
+
+An alternative way is by making `jsLox` executable but first make sure to fix the shebang in the file
+
+```
+# current shebang value: #!/usr/local/bin/node
+$: chmod a+x ./jsLox
+$: ./jsLox
+```

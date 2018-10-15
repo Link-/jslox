@@ -1,6 +1,7 @@
 const fs = require('fs');
 const readline = require('readline');
-const Token = require('./Token.js');
+const Token = require('./Token.js').Token;
+const Scanner = require('./Scanner.js').Scanner;
 
 /**
  * Basic Interpreter Shell Implementation
@@ -72,6 +73,10 @@ class Shell {
    */
   static run(source) {
     console.log(`EXEC: ${source}`);
+    let scanner = new Scanner(source);
+    let tokens = scanner.scanTokens();
+
+    console.log(tokens);
   }
 
   /**

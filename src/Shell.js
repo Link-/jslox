@@ -3,14 +3,13 @@ const readline = require('readline');
 const Token = require('./Token.js');
 
 /**
- * TODO:
- * - Rename this class "Shell" and move jsLox to the root directory
+ * Basic Interpreter Shell Implementation
  */
-class jsLox {
+class Shell {
 
   static init() {
     // Error flag -- will terminate execution if error is raised
-    jsLox.hadError = false;
+    Shell.hadError = false;
     // process.argv is an array containing the command line arguments. 
     // The first element will be 'node', the second element will be 
     // the name of the JavaScript file so we remove both with slice()
@@ -19,9 +18,9 @@ class jsLox {
     if (args.length > 1) {
       console.log("Usage: jsLox [script]");
     } else if (args.length == 1) {
-      jsLox.runFile(args[0])
+      Shell.runFile(args[0])
     } else {
-      jsLox.runPrompt();
+      Shell.runPrompt();
     }
   }
 
@@ -38,9 +37,9 @@ class jsLox {
     });
 
     lineReader.on('line', (line) => {
-      jsLox.run(line);
+      Shell.run(line);
 
-      if (jsLox.hadError) {
+      if (Shell.hadError) {
         process.exit(65);
       }
     });
@@ -61,9 +60,9 @@ class jsLox {
     rlInterface.prompt();
 
     rlInterface.on('line', (line) => {
-      jsLox.run(line);
+      Shell.run(line);
       rlInterface.prompt();
-      jsLox.hadError = false;
+      Shell.hadError = false;
     });
   }
 
@@ -95,8 +94,4 @@ class jsLox {
   }
 }
 
-/**
- *  TODO: 
- * - Move this elsewhere
- */
-jsLox.init();
+module.exports = { Shell }

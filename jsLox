@@ -1,0 +1,5 @@
+#!/usr/local/bin/node
+const Shell = require('./src/Shell.js').Shell;
+
+// Run the shell
+Shell.init();

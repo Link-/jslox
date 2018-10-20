@@ -47,15 +47,23 @@ class Scanner {
       case '<': this.addToken(this.match('=') ? TokenType.LESS_EQUAL : TokenType.LESS); break;
       case '>': this.addToken(this.match('=') ? TokenType.GREATER_EQUAL : TokenType.GREATER); break;
       case '/':
-        if (this.match('/')) {
-          // A comment goes until the end of line
-          while (this.peek() != '\n' && !this.isAtEnd()) {
+        if (this.match('*')) {
+          // C-Style block comment
+          while (!this.match('*') && !this.peek() != '/' && !this.isAtEnd()) {
             this.advance();
           }
+          // TODO:
+          // - DIRTY HACK (FIXME)
+          this.advance();
+        } else if (this.match('/')) {
+            // A comment goes until the end of line
+            while (this.peek() != '\n' && !this.isAtEnd()) {
+              this.advance();
+            }
         } else {
             this.addToken(TokenType.SLASH);
         }
-      break;
+        break;
       case ' ':
       case '\r':
       case '\t':

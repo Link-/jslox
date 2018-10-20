@@ -189,6 +189,8 @@ class Scanner {
 
   /**
    * Lookahead method
+   * TODO:
+   * - Implement an index out of bounds exception if cursor has a negative value
    */
   peek() {
     if (this.isAtEnd()) {

@@ -16,3 +16,11 @@ An alternative way is by making `jsLox` executable but first make sure to fix th
 $: chmod a+x ./jsLox
 $: ./jsLox
 ```
+
+# Tests
+
+Run the tests with:
+
+```
+$: npm run test
+```

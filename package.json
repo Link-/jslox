@@ -5,7 +5,7 @@
   "main": "jsLox",
   "scripts": {
     "dev": "node jsLox",
-    "test": "mocha"
+    "test": "mocha $(pwd)/test --recursive"
   },
   "repository": {
     "type": "git",

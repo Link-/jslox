@@ -8,7 +8,17 @@ const ASTtypes = {
   'Unary'     : ['operator', 'right'],
 }
 
+/**
+ * Standalone script that generates the different AST classes
+ * 
+ * Run:
+ * node GenerateAST.js <output directory | without a trailing />
+ */
 class GenerateAST {
+
+  /**
+   * 
+   */
   static init() {
     // process.argv is an array containing the command line arguments.
     // The first element will be 'node', the second element will be

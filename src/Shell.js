@@ -17,7 +17,7 @@ class Shell {
     const args = process.argv.slice(2);
 
     if (args.length > 1) {
-      console.log("Usage: jsLox [script]");
+      process.stderr.write("Usage: jsLox [script]");
     } else if (args.length == 1) {
       Shell.runFile(args[0])
     } else {

@@ -1,5 +1,5 @@
 var assert = require('chai').assert;
-var GenerateAST = require('../src/tools/GenerateAST.js').GenerateAST;
+var GenerateAST = require('../../src/tools/GenerateAST.js').GenerateAST;
 
 describe('GenerateAST', () => {
 

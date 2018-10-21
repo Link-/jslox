@@ -48,13 +48,18 @@ class Scanner {
       case '>': this.addToken(this.match('=') ? TokenType.GREATER_EQUAL : TokenType.GREATER); break;
       case '/':
         if (this.match('*')) {
-          // C-Style block comment
-          while (!this.match('*') && !this.peek() != '/' && !this.isAtEnd()) {
+          /**
+           * C-Style block comments. Very naive implementation
+           * TODO:
+           * - Implement a better version of this
+           */
+          while (!this.peek() != '/' && !this.isAtEnd()) {
+            if (this.match('*') && this.match('/')) {
+              this.advance();
+              break;
+            }
             this.advance();
           }
-          // TODO:
-          // - DIRTY HACK (FIXME)
-          this.advance();
         } else if (this.match('/')) {
             // A comment goes until the end of line
             while (this.peek() != '\n' && !this.isAtEnd()) {

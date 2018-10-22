@@ -10,14 +10,14 @@ const ASTtypes = {
 
 /**
  * Standalone script that generates the different AST classes
- * 
+ *
  * Run:
  * node GenerateAST.js <output directory | without a trailing />
  */
 class GenerateAST {
 
   /**
-   * 
+   *
    */
   static init() {
     // process.argv is an array containing the command line arguments.
@@ -37,9 +37,9 @@ class GenerateAST {
 
   /**
    *
-   * @param {*} outputDir 
-   * @param {*} baseName 
-   * @param {*} types 
+   * @param {*} outputDir
+   * @param {*} baseName
+   * @param {*} types
    */
   static defineAST(outputDir, baseName, types) {
     // Write the Base Class file first
@@ -61,13 +61,11 @@ class GenerateAST {
 
   /**
    *
-   * @param {*} baseName 
+   * @param {*} baseName
    */
   static defineBaseClass(baseName) {
-    let classDefinition = `class ${baseName} {}
-
-module.exports = { ${baseName} };
-`
+    let classDefinition    = `class ${baseName} {}\n\n`;
+    classDefinition	      += `module.exports = { ${baseName} };\n`
 
     return classDefinition;
   }
@@ -75,27 +73,23 @@ module.exports = { ${baseName} };
   /**
    * This is one ugly ass method.
    *
-   * @param {*} baseName 
-   * @param {*} className 
-   * @param {*} fields 
+   * @param {*} baseName
+   * @param {*} className
+   * @param {*} fields
    */
   static defineType(baseName, className, fields) {
-    let classDefinition = `const ${baseName} = require('./${baseName}.js').${baseName};
-
-class ${className} extends ${baseName} {
-
-  constructor(${fields}) {`;
+    let classDefinition    = `const ${baseName} = require('./${baseName}.js').${baseName};\n\n`;
+    classDefinition	      += `class ${className} extends ${baseName} {\n`;
+    classDefinition       += `  constructor(${fields}) {`;
 
     fields.forEach((value) => {
-      classDefinition += `\n    this.${value} = ${value};`
+      classDefinition     += `\n    this.${value} = ${value};`
     });
 
-    classDefinition += `
-  }
-}
+    classDefinition       += `\n  }\n`;
+    classDefinition	      += `}\n\n`;
 
-module.exports = { ${className} };
-`;
+    classDefinition	      += `module.exports = { ${className} };\n`;
 
     return classDefinition;
   }

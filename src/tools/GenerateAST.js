@@ -36,7 +36,7 @@ class GenerateAST {
   }
 
   /**
-   *
+   * 
    * @param {*} outputDir
    * @param {*} baseName
    * @param {*} types
@@ -46,17 +46,17 @@ class GenerateAST {
     let definition = GenerateAST.defineBaseClass(baseName);
     let path = `${outputDir}/${baseName}.js`;
 
-    fs.writeFileSync(path, definition);
-
     // Write the Type Class files
     for (let item in types) {
       let className = item;
       let fields = types[item];
-      path = `${outputDir}/${className}.js`;
-      definition = GenerateAST.defineType(baseName, className, fields);
-
-      fs.writeFileSync(path, definition);
+      definition += GenerateAST.defineType(baseName, className, fields);
     }
+    
+    let modules = Object.keys(types).join(', ') + `, ${baseName}`;
+    definition += `\n\nmodule.exports = { ${modules} };\n`;
+
+    return fs.writeFileSync(path, definition);
   }
 
   /**
@@ -65,7 +65,7 @@ class GenerateAST {
    */
   static defineBaseClass(baseName) {
     let classDefinition    = `class ${baseName} {}\n\n`;
-    classDefinition	      += `module.exports = { ${baseName} };\n`
+    // classDefinition	      += `module.exports = { ${baseName} };\n`
 
     return classDefinition;
   }
@@ -78,13 +78,12 @@ class GenerateAST {
    * @param {*} fields
    */
   static defineType(baseName, className, fields) {
-    let classDefinition    = `const ${baseName} = require('./${baseName}.js').${baseName};\n\n`;
-
     // Class START
-    classDefinition	      += `class ${className} extends ${baseName} {\n`;
+    let classDefinition	   = `class ${className} extends ${baseName} {\n`;
 
     // Constructor START
-    classDefinition       += `  constructor(${fields}) {`;
+    classDefinition       += `  constructor(${fields}) {\n`;
+    classDefinition       += `    super();`;
     fields.forEach((value) => {
       classDefinition     += `\n    this.${value} = ${value};`
     });
@@ -100,7 +99,7 @@ class GenerateAST {
     classDefinition	      += `}\n\n`;
     // Class END
 
-    classDefinition	      += `module.exports = { ${className} };\n`;
+    // classDefinition	      += `module.exports = { ${className} };\n`;
 
     return classDefinition;
   }

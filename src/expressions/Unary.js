@@ -5,6 +5,9 @@ class Unary extends Expr {
     this.operator = operator;
     this.right = right;
   }
+  accept(visitor) {
+    return visitor.visitUnaryExpr(this);
+  }
 }
 
 module.exports = { Unary };

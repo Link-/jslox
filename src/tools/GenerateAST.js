@@ -79,15 +79,26 @@ class GenerateAST {
    */
   static defineType(baseName, className, fields) {
     let classDefinition    = `const ${baseName} = require('./${baseName}.js').${baseName};\n\n`;
-    classDefinition	      += `class ${className} extends ${baseName} {\n`;
-    classDefinition       += `  constructor(${fields}) {`;
 
+    // Class START
+    classDefinition	      += `class ${className} extends ${baseName} {\n`;
+
+    // Constructor START
+    classDefinition       += `  constructor(${fields}) {`;
     fields.forEach((value) => {
       classDefinition     += `\n    this.${value} = ${value};`
     });
-
     classDefinition       += `\n  }\n`;
+    // Constructor END
+
+    // accept(visitor) START
+    classDefinition	      += `  accept(visitor) {\n`;
+    classDefinition	      += `    return visitor.visit${className}${baseName}(this);\n`;
+    classDefinition	      += `  }\n`;
+    // accept(visitor) END
+
     classDefinition	      += `}\n\n`;
+    // Class END
 
     classDefinition	      += `module.exports = { ${className} };\n`;
 

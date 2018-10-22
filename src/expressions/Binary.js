@@ -6,6 +6,9 @@ class Binary extends Expr {
     this.operator = operator;
     this.right = right;
   }
+  accept(visitor) {
+    return visitor.visitBinaryExpr(this);
+  }
 }
 
 module.exports = { Binary };

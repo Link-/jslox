@@ -24,12 +24,10 @@ class GenerateAST {
     // The first element will be 'node', the second element will be
     // the name of the JavaScript file so we remove both with slice()
     const args = process.argv.slice(2);
-
     if (args.length != 1) {
       process.stderr.write("Usage: node GenerateAST.js [output directory]");
       return;
     }
-
     this.outputDir = args[0];
     // Generate the files
     GenerateAST.defineAST(this.outputDir, 'Expr', ASTtypes);
@@ -52,10 +50,9 @@ class GenerateAST {
       let fields = types[item];
       definition += GenerateAST.defineType(baseName, className, fields);
     }
-    
     let modules = Object.keys(types).join(', ') + `, ${baseName}`;
+    // Add module exports to make classes available
     definition += `\n\nmodule.exports = { ${modules} };\n`;
-
     return fs.writeFileSync(path, definition);
   }
 
@@ -65,8 +62,6 @@ class GenerateAST {
    */
   static defineBaseClass(baseName) {
     let classDefinition    = `class ${baseName} {}\n\n`;
-    // classDefinition	      += `module.exports = { ${baseName} };\n`
-
     return classDefinition;
   }
 
@@ -98,8 +93,6 @@ class GenerateAST {
 
     classDefinition	      += `}\n\n`;
     // Class END
-
-    // classDefinition	      += `module.exports = { ${className} };\n`;
 
     return classDefinition;
   }

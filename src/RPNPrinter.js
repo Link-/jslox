@@ -53,13 +53,10 @@ class RPNPrinter {
    */
   rpn(name, ...exprs) {
     let result = ``;
-
     exprs.forEach((value) => {
       result += `${value.accept(this)} `;
     });
-
     result += `${name}`;
-
     return result.trim();
   }
 }

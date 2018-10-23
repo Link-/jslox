@@ -21,7 +21,6 @@ class Scanner {
       this.start = this.current;
       this.scanToken();
     }
-
     this.tokens.push(new Token(TokenType.EOF, "", null, this.line));
     return this.tokens;
   }
@@ -105,15 +104,12 @@ class Scanner {
     while (this.isAlphaNumeric(this.peek())) {
       this.advance();
     }
-
     // Check if the identifier is a reserved word
     let text = this.source.substr(this.start, this.current);
     let type = Keywords[text];
-
     if (type == 'undefined') {
       type = TokenType.IDENTIFIER;
     }
-
     this.addToken(type);
   }
 
@@ -187,7 +183,6 @@ class Scanner {
     }
 
     this.advance();
-
     const value = this.source.substr(this.start + 1, this.current - 1);
     this.addToken(TokenType.STRING, value);
   }
@@ -201,7 +196,6 @@ class Scanner {
     if (this.isAtEnd()) {
       return '\0';
     }
-
     return this.source.charAt(this.current);
   }
 
@@ -212,7 +206,6 @@ class Scanner {
     if (this.current + 1 >= this.source.length) {
       return '\0';
     }
-
     return this.source.charAt(this.current + 1);
   }
 
@@ -224,7 +217,6 @@ class Scanner {
     if (this.isAtEnd() || this.source.charAt(this.current) != expected) {
       return false;
     }
-
     this.current++;
     return true;
   }

@@ -39,7 +39,6 @@ class Shell {
 
     lineReader.on('line', (line) => {
       Shell.run(line);
-
       if (Shell.hadError) {
         process.exit(65);
       }
@@ -59,7 +58,6 @@ class Shell {
     });
 
     rlInterface.prompt();
-
     rlInterface.on('line', (line) => {
       Shell.run(line);
       rlInterface.prompt();
@@ -75,7 +73,6 @@ class Shell {
     console.log(`EXEC: ${source}`);
     let scanner = new Scanner(source);
     let tokens = scanner.scanTokens();
-
     console.log(tokens);
   }
 

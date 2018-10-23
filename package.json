@@ -4,8 +4,9 @@
   "description": "Javascript implementation of the Lox language",
   "main": "jsLox",
   "scripts": {
-    "dev": "node jsLox",
-    "test": "mocha $(pwd)/test --recursive"
+    "start": "node jsLox",
+    "test": "mocha $(pwd)/test --recursive",
+    "test_watch": "mocha $(pwd)/test --recursive --watch"
   },
   "repository": {
     "type": "git",

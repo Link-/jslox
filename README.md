@@ -6,7 +6,7 @@ Javascript implementation of the Lox language (for educational purposes). Lox is
 Clone the repository then run the REPL.
 
 ```
-$: npm run dev
+$: npm run start
 ```
 
 An alternative way is by making `jsLox` executable but first make sure to fix the shebang in the file
